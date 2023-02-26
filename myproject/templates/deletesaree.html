@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<div>
+    <h8>Please provide image name below to delete saree</h8> <br><br>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+        {{form.img_name.label}}:&nbsp{{form.img_name}}
+        {{form.submit()}}
+    </form>
+</div>
+<br>
+<div class="row row-cols-2 row-cols-md-5 g-4">
+    
+    {% for saree in sarees %}
+    <div class="col">
+      <div class="card">
+        <img src="data:;base64,{{decode_image(saree.image)}}", width="200", height="300">
+        <!--<img src="{{decode_image(saree.image)}}">-->
+        <!--<img src="data:;base64,{{decode_image(saree.image)}}">-->
+        <div class="card-body">
+          <h5 class="card-title">{{saree.category.upper()}} {{saree.subCategory.upper()}} {{saree.img_name}}</h5>
+          </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+<!--
+<div>
+    <p>Below are image details</p>
+    <ol>
+        {% for saree in sarees %}
+        <li><b>Provider</b> : {{saree.provider.upper()}}  <b>Category</b>: {{saree.category.upper()}} 
+            <b>SubCategory</b>: {{saree.subCategory.upper()}} <b>Image Name</b>: {{saree.img_name}} <br>
+            <img src="data:;base64,{{decode_image(saree.image)}}">
+        </li>
+
+        {% endfor %}
+</div>
+-->
+
+{% endblock %}
